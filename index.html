@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Neter</title>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <h1>Neter</h1>
+        <p>Your mobile hub for trusted news and social media.</p>
+      </header>
+
+      <section aria-labelledby="news-title">
+        <div class="section-header">
+          <h2 id="news-title">News</h2>
+          <span>Live sources</span>
+        </div>
+        <ul id="news-list" class="card-list"></ul>
+      </section>
+
+      <section aria-labelledby="social-title">
+        <div class="section-header">
+          <h2 id="social-title">Social</h2>
+          <span>Stay connected</span>
+        </div>
+        <ul id="social-list" class="card-list"></ul>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
