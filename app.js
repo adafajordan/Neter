@@ -1,25 +1,25 @@
 const feeds = {
   news: [
     {
-      name: "BBC",
+      source: "BBC",
       url: "https://www.bbc.com/news",
       headline: "Global headlines in one place",
       detail: "World coverage and live reporting",
     },
     {
-      name: "Reuters",
+      source: "Reuters",
       url: "https://www.reuters.com/",
       headline: "Breaking stories from major markets",
       detail: "Business, politics, and technology",
     },
     {
-      name: "AP News",
+      source: "AP News",
       url: "https://apnews.com/",
       headline: "Top U.S. and international updates",
       detail: "Fast-moving stories and analysis",
     },
     {
-      name: "Al Jazeera",
+      source: "Al Jazeera",
       url: "https://www.aljazeera.com/",
       headline: "Regional voices and global context",
       detail: "International perspectives and features",
@@ -50,7 +50,7 @@ const feeds = {
   ],
 };
 
-const socialAdAfterPostNumbers = [1, 2];
+const adInsertionAfterPosts = [1, 2];
 
 function setupLogoFallback() {
   const logo = document.getElementById("site-logo");
@@ -74,7 +74,7 @@ function renderNews(items, targetId) {
   if (!list) return;
 
   list.innerHTML = "";
-  items.forEach(({ headline, url, detail, name: sourceName }) => {
+  items.forEach(({ headline, url, detail, source }) => {
     const article = document.createElement("article");
     article.className = "news-card";
 
@@ -89,10 +89,10 @@ function renderNews(items, targetId) {
     const summary = document.createElement("p");
     summary.textContent = detail;
 
-    const source = document.createElement("small");
-    source.textContent = sourceName;
+    const sourceLabel = document.createElement("small");
+    sourceLabel.textContent = source;
 
-    anchor.append(title, summary, source);
+    anchor.append(title, summary, sourceLabel);
     article.appendChild(anchor);
     list.appendChild(article);
   });
@@ -133,7 +133,7 @@ function renderPosts(items, targetId) {
     article.append(meta, content, footer);
     list.appendChild(article);
 
-    if (socialAdAfterPostNumbers.includes(index + 1)) {
+    if (adInsertionAfterPosts.includes(index + 1)) {
       const ad = document.createElement("div");
       ad.className = "ad-slot";
       ad.setAttribute("aria-label", "Advertisement space");
