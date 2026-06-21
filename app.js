@@ -17,17 +17,24 @@ function renderLinks(items, targetId) {
   const list = document.getElementById(targetId);
   if (!list) return;
 
-  list.innerHTML = items
-    .map(
-      ({ name, url, detail }) => `
-      <li>
-        <a href="${url}" target="_blank" rel="noopener noreferrer">
-          <strong>${name}</strong>
-          <small>${detail}</small>
-        </a>
-      </li>`
-    )
-    .join("");
+  list.innerHTML = "";
+  items.forEach(({ name, url, detail }) => {
+    const li = document.createElement("li");
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.target = "_blank";
+    anchor.rel = "noopener noreferrer";
+
+    const title = document.createElement("strong");
+    title.textContent = name;
+    const subtitle = document.createElement("small");
+    subtitle.textContent = detail;
+
+    anchor.appendChild(title);
+    anchor.appendChild(subtitle);
+    li.appendChild(anchor);
+    list.appendChild(li);
+  });
 }
 
 renderLinks(feeds.news, "news-list");

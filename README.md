@@ -13,7 +13,7 @@ Neter is a mobile-first Progressive Web App (PWA) that acts as a hub for both ne
 Serve the repository with any static server, for example:
 
 ```bash
-cd /home/runner/work/Neter/Neter
+cd <repository-directory>
 python3 -m http.server 8080
 ```
 
