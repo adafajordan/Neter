@@ -50,7 +50,7 @@ const feeds = {
   ],
 };
 
-const adInsertionAfterPosts = [1, 2];
+const adInsertionAfterPostPositions = [1, 2];
 
 function setupLogoFallback() {
   const logo = document.getElementById("site-logo");
@@ -59,14 +59,10 @@ function setupLogoFallback() {
   const fallbackSrc = logo.dataset.fallbackSrc;
   if (!fallbackSrc) return;
 
-  logo.addEventListener(
-    "error",
-    () => {
-      if (logo.src.endsWith(fallbackSrc)) return;
-      logo.src = fallbackSrc;
-    },
-    { once: true }
-  );
+  logo.addEventListener("error", () => {
+    if (logo.src.endsWith(fallbackSrc)) return;
+    logo.src = fallbackSrc;
+  });
 }
 
 function renderNews(items, targetId) {
@@ -133,7 +129,7 @@ function renderPosts(items, targetId) {
     article.append(meta, content, footer);
     list.appendChild(article);
 
-    if (adInsertionAfterPosts.includes(index + 1)) {
+    if (adInsertionAfterPostPositions.includes(index + 1)) {
       const ad = document.createElement("div");
       ad.className = "ad-slot";
       ad.setAttribute("aria-label", "Advertisement space");
