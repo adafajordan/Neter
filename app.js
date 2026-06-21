@@ -52,6 +52,23 @@ const feeds = {
 
 const socialAdAfterPostNumbers = [1, 2];
 
+function setupLogoFallback() {
+  const logo = document.getElementById("site-logo");
+  if (!logo) return;
+
+  const fallbackSrc = logo.dataset.fallbackSrc;
+  if (!fallbackSrc) return;
+
+  logo.addEventListener(
+    "error",
+    () => {
+      if (logo.src.endsWith(fallbackSrc)) return;
+      logo.src = fallbackSrc;
+    },
+    { once: true }
+  );
+}
+
 function renderNews(items, targetId) {
   const list = document.getElementById(targetId);
   if (!list) return;
@@ -128,6 +145,7 @@ function renderPosts(items, targetId) {
 
 renderNews(feeds.news, "news-list");
 renderPosts(feeds.social, "social-list");
+setupLogoFallback();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
