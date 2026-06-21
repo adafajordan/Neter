@@ -31,7 +31,12 @@ self.addEventListener("fetch", (event) => {
           event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)));
           return response;
         })
-        .catch(() => caches.match("/index.html"));
+        .catch(() => {
+          if (event.request.mode === "navigate") {
+            return caches.match("/index.html");
+          }
+          return Response.error();
+        });
     })
   );
 });
