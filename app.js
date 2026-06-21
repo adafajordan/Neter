@@ -50,7 +50,7 @@ const feeds = {
   ],
 };
 
-const socialAdInsertAfterPosts = [1, 2];
+const socialAdAfterPostNumbers = [1, 2];
 
 function renderNews(items, targetId) {
   const list = document.getElementById(targetId);
@@ -79,10 +79,6 @@ function renderNews(items, targetId) {
     article.appendChild(anchor);
     list.appendChild(article);
   });
-}
-
-function shouldInsertSocialAd(position) {
-  return socialAdInsertAfterPosts.includes(position);
 }
 
 function renderPosts(items, targetId) {
@@ -119,7 +115,7 @@ function renderPosts(items, targetId) {
     article.append(meta, content, footer);
     list.appendChild(article);
 
-    if (shouldInsertSocialAd(index + 1)) {
+    if (socialAdAfterPostNumbers.includes(index + 1)) {
       const ad = document.createElement("div");
       ad.className = "ad-slot";
       ad.setAttribute("aria-label", "Advertisement space");
