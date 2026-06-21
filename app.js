@@ -57,7 +57,7 @@ function renderNews(items, targetId) {
   if (!list) return;
 
   list.innerHTML = "";
-  items.forEach(({ name, url, headline, detail }) => {
+  items.forEach(({ headline, url, detail, name: sourceName }) => {
     const article = document.createElement("article");
     article.className = "news-card";
 
@@ -73,7 +73,7 @@ function renderNews(items, targetId) {
     summary.textContent = detail;
 
     const source = document.createElement("small");
-    source.textContent = name;
+    source.textContent = sourceName;
 
     anchor.append(title, summary, source);
     article.appendChild(anchor);
@@ -97,6 +97,7 @@ function renderPosts(items, targetId) {
     const authorName = document.createElement("strong");
     authorName.textContent = author;
     const authorHandle = document.createElement("span");
+    authorHandle.className = "social-handle";
     authorHandle.textContent = handle;
     authorBlock.append(authorName, authorHandle);
 
